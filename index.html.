@@ -1,3 +1,4 @@
+<!--Kemwahardware v2 deploy 8:05pm-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +23,7 @@
       --border:    #ddd;
     }
 body{
-background: var(--orange);
+background: var{--orange};
 color: var(--yellow);
 font-family: Oswald, Arial;
 text-align: center;

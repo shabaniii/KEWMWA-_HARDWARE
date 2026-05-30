@@ -21,6 +21,13 @@
       --white:     #ffffff;
       --border:    #ddd;
     }
+body{
+background: var(--orange);
+color: var(--yellow);
+font-family: Oswald, Arial;
+text-align: center;
+padding-top: 100px:
+}
 
     html { scroll-behavior: smooth; }
 

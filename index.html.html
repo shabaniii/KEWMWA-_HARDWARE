@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kemwa Hardware – Kibaha, Visiga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange:    #e87722;
+      --orange-dk: #c45f0a;
+      --yellow:    #f5c842;
+      --dark:      #1a1a1a;
+      --dark2:     #2c2c2c;
+      --mid:       #444;
+      --light:     #f4f1ec;
+      --white:     #ffffff;
+      --border:    #ddd;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 400;
+      background: var(--light);
+      color: var(--dark);
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--dark);
+      color: #ccc;
+      font-size: 0.78rem;
+      padding: 8px 24px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .topbar span { display: flex; align-items: center; gap: 6px; }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--white);
+      border-bottom: 4px solid var(--orange);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo-block { display: flex; align-items: center; gap: 16px; }
+
+    .logo-icon {
+      width: 60px; height: 60px;
+      background: var(--orange);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .logo-text h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: 0.03em;
+      line-height: 1;
+    }
+
+    .logo-text h1 span { color: var(--orange); }
+
+    .logo-text p {
+      font-size: 0.78rem;
+      color: var(--mid);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .header-contact {
+      text-align: right;
+      font-size: 0.82rem;
+      color: var(--mid);
+      line-height: 1.8;
+    }
+    .header-contact strong {
+      font-size: 1.05rem;
+      color: var(--orange-dk);
+      display: block;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--dark2);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    nav ul li a {
+      display: block;
+      color: #ddd;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 14px 18px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 60%, #3a2a10 100%);
+      color: var(--white);
+      padding: 70px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '🔧';
+      position: absolute;
+      font-size: 18rem;
+      opacity: 0.04;
+      top: -40px; right: -30px;
+      line-height: 1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--orange);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .hero h2 span { color: var(--yellow); }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #bbb;
+      max-width: 540px;
+      margin: 0 auto 30px;
+      line-height: 1.7;
+    }
+
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: opacity 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-2px); }
+
+    .btn-primary { background: var(--orange); color: white; }
+    .btn-outline  { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4); }
+
+    /* ── FEATURES STRIP ── */
+    .features-strip {
+      background: var(--orange);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 28px;
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border-right: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .feature-item:last-child { border-right: none; }
+    .feature-item .fi { font-size: 1.3rem; }
+
+    /* ── MAIN CONTENT WRAPPER ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .section-title span { color: var(--orange); }
+
+    .title-line {
+      width: 50px;
+      height: 4px;
+      background: var(--orange);
+      border-radius: 2px;
+      margin-bottom: 30px;
+    }
+
+    /* ── PRODUCTS SECTION ── */
+    #products { padding: 60px 0; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 18px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 24px 18px 20px;
+      text-align: center;
+      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 8px 24px rgba(232,119,34,0.18);
+      transform: translateY(-4px);
+      border-color: var(--orange);
+    }
+
+    .product-card .p-icon { font-size: 2.6rem; margin-bottom: 12px; }
+
+    .product-card h4 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .product-card p {
+      font-size: 0.78rem;
+      color: #777;
+      line-height: 1.6;
+    }
+
+    /* ── ABOUT SECTION ── */
+    #about {
+      background: var(--white);
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media(max-width: 660px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .about-text p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: #444;
+      margin-bottom: 14px;
+    }
+
+    .stats-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat {
+      background: var(--light);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      border-top: 4px solid var(--orange);
+    }
+
+    .stat .num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    .stat p {
+      font-size: 0.75rem;
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+
+    /* ── WHY US ── */
+    #why { padding: 60px 0; }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .why-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 26px 22px;
+      border-left: 5px solid var(--orange);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    .why-card .w-icon { font-size: 2rem; margin-bottom: 12px; }
+
+    .why-card h4 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    .why-card p { font-size: 0.82rem; color: #666; line-height: 1.7; }
+
+    /* ── SERVICES ── */
+    #services {
+      background: var(--dark);
+      color: var(--white);
+      padding: 60px 0;
+    }
+
+    #services .section-title { color: var(--white); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 28px 22px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .service-card:hover {
+      background: rgba(232,119,34,0.15);
+      border-color: var(--orange);
+    }
+
+    .service-card .s-icon { font-size: 2rem; margin-bottom: 14px; }
+
+    .service-card h4 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.05rem;
+      color: var(--yellow);
+      margin-bottom: 8px;
+    }
+
+    .service-card p { font-size: 0.82rem; color: #aaa; line-height: 1.7; }
+
+    /* ── CONTACT ── */
+    #contact { padding: 60px 0; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+
+    @media(max-width: 660px) { .contact-grid { grid-template-columns: 1fr; } }
+
+    .contact-info h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+
+    .info-row {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .info-icon {
+      width: 40px; height: 40px;
+      background: var(--orange);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      color: white;
+    }
+
+    .info-row h5 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #999;
+      margin-bottom: 3px;
+    }
+
+    .info-row p { font-size: 0.9rem; color: var(--dark); font-weight: 600; }
+
+    /* Map placeholder */
+    .map-box {
+      background: #e8e0d4;
+      border-radius: 10px;
+      overflow: hidden;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed var(--orange);
+      color: #888;
+      text-align: center;
+      padding: 30px;
+      gap: 10px;
+    }
+
+    .map-box .map-icon { font-size: 3rem; }
+    .map-box h4 { font-family: 'Oswald', sans-serif; font-size: 1.1rem; color: var(--dark); }
+    .map-box p { font-size: 0.8rem; line-height: 1.7; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: #aaa;
+      padding: 40px 24px 20px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 36px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @media(max-width: 680px) { .footer-inner { grid-template-columns: 1fr; } }
+
+    .footer-brand h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .footer-brand h3 span { color: var(--orange); }
+
+    .footer-brand p { font-size: 0.82rem; line-height: 1.8; }
+
+    .footer-col h4 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem;
+      color: white;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li {
+      font-size: 0.82rem;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 18px auto 0;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: #666;
+    }
+
+    /* ── HOURS TABLE ── */
+    .hours-table { width: 100%; border-collapse: collapse; }
+    .hours-table tr td { padding: 5px 0; font-size: 0.82rem; }
+    .hours-table tr td:last-child { text-align: right; font-weight: 600; color: var(--orange); }
+
+    /* ── OPEN BADGE ── */
+    .open-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .open-dot {
+      width: 8px; height: 8px;
+      background: #4caf50;
+      border-radius: 50%;
+      animation: blink 1.4s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>📍 Kibaha, Visiga — Pwani Region, Tanzania</span>
+  <span>📞 Open Mon–Sat: 7:00 AM – 7:00 PM</span>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-block">
+    <div class="logo-icon">🔨</div>
+    <div class="logo-text">
+      <h1>KEMWA <span>HARDWARE</span></h1>
+      <p>Building Supplies &amp; Construction Materials</p>
+    </div>
+  </div>
+  <div class="header-contact">
+    <strong>📞 Call Us Today</strong>
+    Kibaha, Visiga — Pwani Region<br>
+    Open: Mon – Sat &nbsp;|&nbsp; 7AM – 7PM
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <ul>
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#why">Why Choose Us</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <span class="hero-badge">📍 Kibaha, Visiga — Serving the Community</span>
+  <h2>Your Trusted <span>Hardware</span><br>Store in Kibaha</h2>
+  <p>Quality building materials, tools and construction supplies at affordable prices. From foundations to finishing — we have everything you need to build your dream.</p>
+  <div class="hero-btns">
+    <a href="#products" class="btn btn-primary">View Our Products</a>
+    <a href="#contact"  class="btn btn-outline">Get Directions</a>
+  </div>
+</section>
+
+<!-- FEATURES STRIP -->
+<div class="features-strip">
+  <div class="feature-item"><span class="fi">✅</span> Quality Products</div>
+  <div class="feature-item"><span class="fi">💰</span> Affordable Prices</div>
+  <div class="feature-item"><span class="fi">🚚</span> Local Delivery</div>
+  <div class="feature-item"><span class="fi">🤝</span> Trusted Supplier</div>
+  <div class="feature-item"><span class="fi">⚡</span> Fast Service</div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="container">
+    <h2 class="section-title">Our <span>Products</span></h2>
+    <div class="title-line"></div>
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="p-icon">🧱</div>
+        <h4>Cement &amp; Blocks</h4>
+        <p>Dangote cement, hollow blocks, and solid blocks for all construction needs.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="p-icon">🪵</div>
+        <h4>Timber &amp; Wood</h4>
+        <p>Treated timber, planks, and roofing wood in all standard sizes.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="p-icon">🔩</div>
+        <h4>Iron &amp; Steel</h4>
+        <p>Steel rods, angle irons, GI sheets, and metal roofing materials.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="p-icon">🔧</div>
+        <h4>Tools &amp; Equipment</h4>
+        <p>Hand tools, power tools, safety gear and construction equipment.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="p-icon">🪟</div>
+        <h4>Doors &amp; Windows</h4>
+        <p>Wooden doors, steel doors, aluminium windows, and glass panels.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="p-icon">🚰</div>
+        <h4>Plumbing Supplies</h4>
+        <p>PVC pipes, fittings, taps, water tanks, and plumbing accessories.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="p-icon">💡</div>
+        <h4>Electrical Items</h4>
+        <p>Wires, cables, switches, sockets, conduit pipes, and circuit breakers.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="p-icon">🎨</div>
+        <h4>Paints &amp; Finishes</h4>
+        <p>Crown, Sadolin and Duracoat paints, varnishes, and wall putty.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="p-icon">🪣</div>
+        <h4>Sand &amp; Aggregates</h4>
+        <p>River sand, quarry dust, ballast, and hardcore for foundations.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="p-icon">🛁</div>
+        <h4>Sanitary Ware</h4>
+        <p>Toilets, sinks, bathtubs, shower sets, and bathroom accessories.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="p-icon">🏗️</div>
+        <h4>Roofing Materials</h4>
+        <p>Mabati sheets, ridge caps, nails, roofing felt, and gutters.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="p-icon">🔐</div>
+        <h4>Locks &amp; Hardware</h4>
+        <p>Door locks, hinges, bolts, padlocks, screws, and nails of all sizes.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="section-title">About <span>Kemwa Hardware</span></h2>
+        <div class="title-line"></div>
+        <div class="open-badge"><div class="open-dot"></div> Open Now</div>
+        <p>
+          Kemwa Hardware is a trusted local hardware and construction supply store located in <strong>Kibaha, Visiga</strong>, in the Pwani Region of Tanzania. We serve homeowners, contractors, engineers, and builders across the Kibaha area.
+        </p>
+        <p>
+          Our store stocks a wide range of high-quality building materials, tools, plumbing supplies, electrical items, and finishing products — all under one roof at prices that fit your budget.
+        </p>
+        <p>
+          We are committed to helping our community build better homes, schools, and businesses by providing reliable products and friendly, knowledgeable service every day.
+        </p>
+      </div>
+      <div class="stats-box">
+        <div class="stat">
+          <div class="num">500+</div>
+          <p>Products in Store</p>
+        </div>
+        <div class="stat">
+          <div class="num">10+</div>
+          <p>Years of Service</p>
+        </div>
+        <div class="stat">
+          <div class="num">1000+</div>
+          <p>Happy Customers</p>
+        </div>
+        <div class="stat">
+          <div class="num">6</div>
+          <p>Days Open Per Week</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="container">
+    <h2 class="section-title">Why Choose <span>Us?</span></h2>
+    <div class="title-line"></div>
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="w-icon">💎</div>
+        <h4>Quality Guaranteed</h4>
+        <p>We only sell genuine, certified building materials from trusted manufacturers and brands.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="w-icon">💰</div>
+        <h4>Best Prices in Kibaha</h4>
+        <p>Competitive pricing with discounts for bulk orders and loyal customers. Your money goes further.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="w-icon">👷</div>
+        <h4>Expert Advice</h4>
+        <p>Our staff have hands-on construction knowledge and can guide you to the right materials for your project.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="w-icon">🚚</div>
+        <h4>Local Delivery</h4>
+        <p>We offer affordable delivery of heavy materials to your construction site within Kibaha and nearby areas.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="w-icon">📦</div>
+        <h4>Always in Stock</h4>
+        <p>Large, well-stocked store so you can find what you need without delays or waiting for orders.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="w-icon">🤝</div>
+        <h4>Community Trust</h4>
+        <p>We are a local business proud to serve Kibaha and Visiga. Building relationships, not just buildings.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <h2 class="section-title">Our <span>Services</span></h2>
+    <div class="title-line"></div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="s-icon">🛒</div>
+        <h4>Walk-in Shopping</h4>
+        <p>Visit our store in Visiga, Kibaha to browse and buy all construction materials, tools, and hardware items in person.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="s-icon">📋</div>
+        <h4>Project Quotations</h4>
+        <p>Bring your building plan and we will help you prepare a full materials list and cost estimate for your project.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="s-icon">🚛</div>
+        <h4>Delivery Service</h4>
+        <p>Bulk materials like cement, sand, blocks, and steel can be delivered straight to your construction site.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="s-icon">📦</div>
+        <h4>Wholesale Supply</h4>
+        <p>Special wholesale pricing for contractors, developers, and businesses buying in large quantities.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Find &amp; <span>Contact Us</span></h2>
+    <div class="title-line"></div>
+    <div class="contact-grid">
+
+      <!-- Info -->
+      <div class="contact-info">
+        <h3>Visit Us in Kibaha</h3>
+
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div>
+            <h5>Address</h5>
+            <p>Kemwa Hardware, Visiga<br>Kibaha, Pwani Region, Tanzania</p>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">📞</div>
+          <div>
+            <h5>Phone / WhatsApp</h5>
+            <p>Contact us by phone or WhatsApp for orders and enquiries</p>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">🕐</div>
+          <div>
+            <h5>Opening Hours</h5>
+            <table class="hours-table">
+              <tr><td>Monday – Friday</td><td>7:00 AM – 7:00 PM</td></tr>
+              <tr><td>Saturday</td><td>7:00 AM – 6:00 PM</td></tr>
+              <tr><td>Sunday</td><td>Closed</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">🗺️</div>
+          <div>
+            <h5>How to Find Us</h5>
+            <p>Located along the Visiga area in Kibaha Town. Ask locals for Kemwa Hardware — we are well known in the community.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map placeholder -->
+      <div class="map-box">
+        <div class="map-icon">🗺️</div>
+        <h4>Kemwa Hardware</h4>
+        <p><strong>Visiga, Kibaha</strong><br>Pwani Region, Tanzania</p>
+        <p style="margin-top:10px; font-size:0.75rem;">Search <strong>"Kemwa Hardware Kibaha"</strong><br>on Google Maps to get directions</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>KEMWA <span>HARDWARE</span></h3>
+      <p>Your local building materials and hardware store in Kibaha, Visiga. Quality products, honest prices, and friendly service since day one. We are proud to support the growth of our community.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <ul>
+        <li>Cement &amp; Blocks</li>
+        <li>Timber &amp; Wood</li>
+        <li>Iron &amp; Steel</li>
+        <li>Roofing Materials</li>
+        <li>Plumbing Supplies</li>
+        <li>Electrical Items</li>
+        <li>Paints &amp; Finishes</li>
+        <li>Doors &amp; Windows</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home"     style="color:#aaa; text-decoration:none;">Home</a></li>
+        <li><a href="#products" style="color:#aaa; text-decoration:none;">Products</a></li>
+        <li><a href="#about"    style="color:#aaa; text-decoration:none;">About Us</a></li>
+        <li><a href="#services" style="color:#aaa; text-decoration:none;">Services</a></li>
+        <li><a href="#contact"  style="color:#aaa; text-decoration:none;">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Kemwa Hardware. All rights reserved.</span>
+    <span>📍 Visiga, Kibaha, Pwani Region, Tanzania</span>
+  </div>
+</footer>
+
+</body>
+</html>
